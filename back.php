@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>影城</title>
 <link rel="stylesheet" href="css/css.css">
-<link href="js/s2.css" rel="stylesheet" type="text/css">
+<link href="css/s2.css" rel="stylesheet" type="text/css">
 <script src="js/jquery-1.9.1.min.js"></script>
 </head>
 
@@ -23,46 +23,45 @@
   </div>
   <div id="mm">
     <?php
-    if(!empty($_POST)){
+    if(isset($_POST['acc'])){
       if($_POST['acc']=='admin'&&$_POST['pw']=='1234'){
-        $_SESSION['login']='admin';
+        $_SESSION['login']=$_POST['acc'];
       }else{
-        echo "<div class='ct'style='color:red'>帳號或密碼錯誤</div>";
+        echo "<div class='ct' style='color:red'>帳號或密碼錯誤</div>";
       }
     }
     if(isset($_SESSION['login'])){
-      
-        include "back/nav.php";
-        $do=$_GET['do']??'home';
-        $file='back/'.$do.'.php';
-        if(file_exists($file)){
-            include $file;
-        }else{
-            include "back/home.php";
-        }
-      
+      include "back/nav.php";
+      $do=$_GET['do']??'main';
+      $file='back/'.$do.'.php';
+      if(file_exists($file)){
+          include $file;
+      }else{
+          include "back/main.php";
+      }
     }else{
-       ?>
-       <form action="?" method="post">
-
-<table>
-    <tr>
-        <td>帳號</td>
-        <td><input type="text" name="acc" id="acc"></td>
-    </tr>
-    <tr>
-        <td>密碼</td>
-        <td><input type="text" name="pw" id="pw"></td>
-    </tr>
-    <tr>
-        <td><input type="submit" value="登入"></td>
-        <td></td>
-    </tr>
-</table>
-</form>
-       <?php
+      ?>
+      <form action="?" method="post">
+      <table>
+        <tr>
+          <td>帳號</td>
+          <td><input type="text" name="acc" id="acc"></td>
+        </tr>
+        <tr>
+          <td>密碼</td>
+          <td><input type="password" name="pw" id="pw">
+          </td>
+        </tr>
+        <tr>
+          <td><input type="submit" value="登入"></td>
+          <td></td>
+        </tr>
+      </table>
+      </form>
+      <?php
     }
     ?>
+    
     
   </div>
   <div id="bo"> ©Copyright 2010~2014 ABC影城 版權所有 </div>

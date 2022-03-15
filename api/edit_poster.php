@@ -1,10 +1,7 @@
 <?php
-include_once "../base.php";
 
-// dd($_POST);
+include_once  "../base.php";
 
-// dd($_FILES);
-// dd($_FILES);
 foreach($_POST['id'] as $k=>$id){
     if(isset($_POST['del'])&&in_array($id,$_POST['del'])){
         $Poster->del($id);
@@ -17,6 +14,4 @@ foreach($_POST['id'] as $k=>$id){
     }
 }
 
-
 to('../back.php?do=poster');
-?>
